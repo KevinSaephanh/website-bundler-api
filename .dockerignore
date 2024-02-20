@@ -1,0 +1,15 @@
+# Logs
+
+log
+logs
+_.log
+npm-debug.log_
+
+# Dependency directories
+
+node_modules/
+jspm_packages/
+
+# dotenv environment variables file
+
+.env
