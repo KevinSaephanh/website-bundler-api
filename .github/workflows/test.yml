@@ -12,14 +12,14 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  unit-tests:
+  test:
     runs-on: ubuntu-latest
     strategy:
       matrix:
         node-version: [20.x]
         mongodb-version: ['4.2', '4.4', '5.0', '6.0']
     steps:
-      - name: Checkout Repository
+      - name: Git checkout
         uses: actions/checkout@v3
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v3
