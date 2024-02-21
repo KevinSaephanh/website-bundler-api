@@ -1,9 +1,9 @@
 import express from 'express';
-import routes from '@routes/index.route';
 import cors from 'cors';
 import logger from 'morgan';
 import connectToDatabase from '@utils/db';
 import { errorMiddleware } from '@middleware/error.middleware';
+import routes from '@routes/index';
 
 const main = async () => {
   const app = express();

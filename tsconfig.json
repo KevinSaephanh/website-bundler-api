@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "target": "esnext",
-    "module": "esnext",
+    "module": "commonjs",
     "skipLibCheck": true,
     "sourceMap": true,
     "outDir": "./dist",
@@ -30,5 +30,5 @@
       "@exceptions/*": ["exceptions/*"],
       "@utils/*": ["utils/*"]
     }
-  }
+  },
 }
