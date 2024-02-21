@@ -12,6 +12,9 @@
     "test:cov": "jest --coverage",
     "lint": "eslint --ignore-path .gitignore --ext .ts src/"
   },
+  "engines": {
+    "node": "20.x"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
