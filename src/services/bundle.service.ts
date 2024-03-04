@@ -1,25 +1,28 @@
 import { HttpException } from '@exceptions/http.exception';
 import Bundle from '@models/bundle.model';
+import { UserService } from './user.service';
 
-interface BundleDto {
+export interface BundleDto {
   title: string;
   websites: string[];
 }
 
 export class BundleService {
+  private readonly userService = new UserService();
+
   async create(userId: string, data: BundleDto) {
-    const bundles = await this.getUserBundles(userId);
-    if (bundles.length >= 10) {
-      throw new HttpException(409, 'User cannot create more than 10 bundles');
-    }
-    return Bundle.create({ ...data });
+    const user = await this.userService.findById(userId);
+    // if (user.bundles?.length >= 15) {
+    //   throw new HttpException(409, 'User cannot create more than 15 bundles');
+    // }
+    return Bundle.create({ ...data, user });
   }
 
-  async getUserBundles(userId: string) {
-    return Bundle.find({ userId });
+  async findUserBundles(userId: string) {
+    return Bundle.find({ user: { googleId: userId } });
   }
 
-  async getById(id: string) {
+  async findById(id: string) {
     const bundle = await Bundle.findById(id);
     if (!bundle) {
       throw new HttpException(404, `Bundle with id: ${id} not found`);
@@ -40,5 +43,6 @@ export class BundleService {
     if (!deletedBundle) {
       throw new HttpException(404, `Bundle with id: ${id} not found`);
     }
+    Bundle.deleteOne({ id });
   }
 }

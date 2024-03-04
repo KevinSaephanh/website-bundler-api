@@ -9,13 +9,13 @@ export class BundleController {
     res.status(201).send({ bundle });
   }
 
-  async getUserBundles(req: Request, res: Response) {
-    const bundles = await this.bundleService.getUserBundles(req.params.userId);
+  async findUserBundles(req: Request, res: Response) {
+    const bundles = await this.bundleService.findUserBundles(req.params.userId);
     res.status(200).send({ bundles });
   }
 
-  async getById(req: Request, res: Response) {
-    const bundle = await this.bundleService.getById(req.params.id);
+  async findById(req: Request, res: Response) {
+    const bundle = await this.bundleService.findById(req.params.id);
     res.status(200).send({ bundle });
   }
 
@@ -25,7 +25,7 @@ export class BundleController {
   }
 
   async delete(req: Request, res: Response) {
-    await this.bundleService.getById(req.params.id);
-    res.status(200).send({ message: 'Bundle deleted successfully' });
+    await this.bundleService.delete(req.params.id);
+    res.status(204).send({ message: 'Bundle deleted successfully' });
   }
 }
