@@ -2,6 +2,7 @@ import { model, Schema } from 'mongoose';
 
 const bundleSchema = new Schema(
   {
+    userId: { type: String, required: true },
     title: { type: String, required: true, minlength: 1, maxlength: 20 },
     websites: [
       {
@@ -10,7 +11,6 @@ const bundleSchema = new Schema(
         validate: [arrayRange, 'List size must be between 1 and 15'],
       },
     ],
-    user: { type: Schema.Types.ObjectId, ref: 'User' },
   },
   { timestamps: true }
 );

@@ -1,6 +1,5 @@
 import { HttpException } from '@exceptions/http.exception';
 import Bundle from '@models/bundle.model';
-import { UserService } from './user.service';
 
 export interface BundleDto {
   title: string;
@@ -8,18 +7,12 @@ export interface BundleDto {
 }
 
 export class BundleService {
-  private readonly userService = new UserService();
-
   async create(userId: string, data: BundleDto) {
-    const user = await this.userService.findById(userId);
-    // if (user.bundles?.length >= 15) {
-    //   throw new HttpException(409, 'User cannot create more than 15 bundles');
-    // }
-    return Bundle.create({ ...data, user });
+    return Bundle.create({ ...data, userId });
   }
 
   async findUserBundles(userId: string) {
-    return Bundle.find({ user: { googleId: userId } });
+    return Bundle.find({ userId });
   }
 
   async findById(id: string) {
